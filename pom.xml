@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.agdsyt</groupId>
+  <artifactId>agdsyt</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <!-- 默认是 jar, 修改为pom。 这样才可以作为父项目存在。-->
+  <packaging>pom</packaging>
+
+  <name>agdsyt</name>
+  <description>springcloud</description>
+  <url>http://maven.apache.org</url>
+
+  <!-- 依赖 springboot 版本是 2.0.3-->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.3.RELEASE</version>
+    <relativePath/>
+  </parent>
+
+  <!-- 可以发现它多了这么一个模块s, 就表示对子项目的关联。-->
+  <modules>
+    <module>eureka-server</module>
+    <module>product-data-service</module>
+    <module>product-data-service2</module>
+    <module>product-view-service-ribbon</module>
+      <module>product-view-service-feign</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- 增加 hutool jar 和 junit 包的依赖，用于后来子项目里观察对其的调用。-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>4.3.1</version>
+    </dependency>
+  </dependencies>
+  <!-- 依赖 spring-cloud 版本是 地名。-->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
